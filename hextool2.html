@@ -1,0 +1,40 @@
+<html>
+	<header>
+	<script src="__javascript__/hexdump.js"></script>
+	<script>
+	function convert()
+	{
+	    var f = document.getElementById ('from');
+		var t = document.getElementById ('to');
+		//alert(f.value);
+		t.value = hexdump.hexdump.explain (f.value)[1]
+	}
+	
+	</script>
+	</header>
+	
+	<body>
+	
+	
+	<button onclick="convert()" type='button' id ='transfer' >
+	Click me
+	</button>
+	<br>
+	<textarea rows="6"  id='from' style="
+    width: 600px;
+    height: 1506px;
+	background-color: #ffe28c;
+	text-align: left;
+">00000000: 00 00 00 5B 68 65 78 64  75 6D 70 5D 00 00 00 00  ...[hexdump]....
+00000010: 00 11 22 33 44 55 66 77  88 99 0A BB CC DD EE FF  .."3DUfw........</textarea>
+	
+	<textarea rows="6"  id='to'
+	style="
+    width: 600px;
+    height: 1506px;
+	background-color: #ffe28c;
+	text-align: left;
+"></textarea>
+	</body>
+
+</html>
