@@ -15,7 +15,7 @@
 				for (var __index0__ = 0; __index0__ < __iterable0__.length; __index0__++) {
 					var line = __iterable0__ [__index0__];
 					print ('1-------------');
-					var addrend = line.find (':  ');
+					var addrend = line.find (': ');
 					if ((0 < addrend && addrend < minhexwidth)) {
 						var line = line.__getslice__ (addrend + 1, null, 1);
 						var line = line.lstrip ();
@@ -28,6 +28,7 @@
 						}
 					}
 					print ('-------------');
+					print (line);
 					if (line [2] == ' ') {
 						print (line);
 						var sepstart = (2 + 1) * 7 + 2;
@@ -65,7 +66,7 @@
 			});}
 		});
 		var myhexdump = Hexdump ();
-		var __left0__ = myhexdump.explain ('00000000  0C 01 20 63 00 02 1A 00  1A 00 3E 05 05 00 00 00   .. c.... ..>..... \n00000010  00 00 00 00 02 00 00 30  30 30 30 30 31 01 36 30   .......0 00001.60 \n00000020  30 33 30 30                                        0300');
+		var __left0__ = myhexdump.explain ('00000000: 00 00 00 5B 68 65 78 64  75 6D 70 5D 00 00 00 00  ...[hexdump]....\n00000010: 00 11 22 33 44 55 66 77  88 99 0A BB CC DD EE FF  .."3DUfw........');
 		var x = __left0__ [0];
 		var y = __left0__ [1];
 		__pragma__ ('<use>' +

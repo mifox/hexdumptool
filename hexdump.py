@@ -30,8 +30,8 @@ class Hexdump:
           for line in text.split('\n'):
             # strip address part
               print("1-------------")
-              
-              addrend = line.find(':  ')
+
+              addrend = line.find(': ')
               if 0 < addrend < minhexwidth:  # : is not in ascii part
                   line = line[addrend+1:]
                   line = line.lstrip()
@@ -42,7 +42,7 @@ class Hexdump:
                       line = line.lstrip()
             # check dump type
               print("-------------")
-              
+              print(line)
               if line[2] == ' ':  # 00 00 00 ...  type of dump
               # check separator
                   print(line)
@@ -78,6 +78,5 @@ class Hexdump:
 myhexdump = Hexdump ()
 
 x,y=myhexdump.explain(
-'00000000  0C 01 20 63 00 02 1A 00  1A 00 3E 05 05 00 00 00   .. c.... ..>..... \n\
-00000010  00 00 00 00 02 00 00 30  30 30 30 30 31 01 36 30   .......0 00001.60 \n\
-00000020  30 33 30 30                                        0300')
+'00000000: 00 00 00 5B 68 65 78 64  75 6D 70 5D 00 00 00 00  ...[hexdump]....\n\
+00000010: 00 11 22 33 44 55 66 77  88 99 0A BB CC DD EE FF  .."3DUfw........')
