@@ -25,15 +25,27 @@ class Hexdump:
           #global zeroxfmt
           zeroxfmt = ''
           blankfmt = ''
+          z = text.split('\n')
+          
           for line in text.split('\n'):
             # strip address part
-              addrend = line.find(':')
+              print("1-------------")
+              
+              addrend = line.find(':  ')
               if 0 < addrend < minhexwidth:  # : is not in ascii part
                   line = line[addrend+1:]
                   line = line.lstrip()
+              else:
+                  addrend = line.find('  ')
+                  if 0 < addrend < minhexwidth:  # : is not in ascii part
+                      line = line[addrend+1:]
+                      line = line.lstrip()
             # check dump type
+              print("-------------")
+              
               if line[2] == ' ':  # 00 00 00 ...  type of dump
               # check separator
+                  print(line)
                   sepstart = (2+1)*7+2  # ('00'+' ')*7+'00'
                   sep = line[sepstart:sepstart+3]
                   #print(line[sepstart:sepstart+3])
@@ -43,9 +55,12 @@ class Hexdump:
                       hexdata2 += line[sepstart+1:bytehexwidth+1]
                   elif sep[2:] == ' ':  # ...00 00 | 00 00...  - Far Manager
                       hexdata = line[:sepstart] + line[sepstart+3:bytehexwidth+2]
+                      hexdata2 = line[:sepstart] + line[sepstart+3:bytehexwidth+2]
                   else:                 # ...00 00 00 00... - Scapy, no separator
                       hexdata = line[:bytehexwidth]
+                      hexdata2 = line[:bytehexwidth]
                   line = hexdata2
+                  print(hexdata2)
                   #line = line.strip()  # ignore surrounding empty lines
                   if blankfmt == '':
                       blankfmt=hexdata2
@@ -62,5 +77,7 @@ class Hexdump:
 		  
 myhexdump = Hexdump ()
 
-#x,y=myhexdump.explain('00000000: 00 00 00 5B 68 65 78 64  75 6D 70 5D 00 00 00 00  ...[hexdump].... \
-#00000010: 00 11 22 33 44 55 66 77  88 99 0A BB CC DD EE FF  .')
+x,y=myhexdump.explain(
+'00000000  0C 01 20 63 00 02 1A 00  1A 00 3E 05 05 00 00 00   .. c.... ..>..... \n\
+00000010  00 00 00 00 02 00 00 30  30 30 30 30 31 01 36 30   .......0 00001.60 \n\
+00000020  30 33 30 30                                        0300')

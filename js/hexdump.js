@@ -1,5 +1,5 @@
 "use strict";
-// Transcrypt'ed from Python, 2017-08-25 16:35:58
+// Transcrypt'ed from Python, 2017-08-30 10:31:35
 function hexdump () {
    var __symbols__ = ['__py3.5__', '__esv5__'];
     var __all__ = {};
@@ -2445,15 +2445,26 @@ function hexdump () {
 				var text = dump.strip ();
 				var zeroxfmt = '';
 				var blankfmt = '';
+				var z = text.py_split ('\n');
 				var __iterable0__ = text.py_split ('\n');
 				for (var __index0__ = 0; __index0__ < __iterable0__.length; __index0__++) {
 					var line = __iterable0__ [__index0__];
-					var addrend = line.find (':');
+					print ('1-------------');
+					var addrend = line.find (':  ');
 					if ((0 < addrend && addrend < minhexwidth)) {
 						var line = line.__getslice__ (addrend + 1, null, 1);
 						var line = line.lstrip ();
 					}
+					else {
+						var addrend = line.find ('  ');
+						if ((0 < addrend && addrend < minhexwidth)) {
+							var line = line.__getslice__ (addrend + 1, null, 1);
+							var line = line.lstrip ();
+						}
+					}
+					print ('-------------');
 					if (line [2] == ' ') {
+						print (line);
 						var sepstart = (2 + 1) * 7 + 2;
 						var sep = line.__getslice__ (sepstart, sepstart + 3, 1);
 						if (sep.__getslice__ (0, 2, 1) == '  ' && sep.__getslice__ (2, null, 1) != ' ') {
@@ -2462,11 +2473,14 @@ function hexdump () {
 						}
 						else if (sep.__getslice__ (2, null, 1) == ' ') {
 							var hexdata = line.__getslice__ (0, sepstart, 1) + line.__getslice__ (sepstart + 3, bytehexwidth + 2, 1);
+							var hexdata2 = line.__getslice__ (0, sepstart, 1) + line.__getslice__ (sepstart + 3, bytehexwidth + 2, 1);
 						}
 						else {
 							var hexdata = line.__getslice__ (0, bytehexwidth, 1);
+							var hexdata2 = line.__getslice__ (0, bytehexwidth, 1);
 						}
 						var line = hexdata2;
+						print (hexdata2);
 						if (blankfmt == '') {
 							var blankfmt = hexdata2;
 						}
@@ -2486,6 +2500,9 @@ function hexdump () {
 			});}
 		});
 		var myhexdump = Hexdump ();
+		var __left0__ = myhexdump.explain ('00000000  0C 01 20 63 00 02 1A 00  1A 00 3E 05 05 00 00 00   .. c.... ..>..... \n00000010  00 00 00 00 02 00 00 30  30 30 30 30 31 01 36 30   .......0 00001.60 \n00000020  30 33 30 30                                        0300');
+		var x = __left0__ [0];
+		var y = __left0__ [1];
 		__pragma__ ('<use>' +
 			'itertools' +
 		'</use>')
@@ -2493,6 +2510,8 @@ function hexdump () {
 			__all__.Hexdump = Hexdump;
 			__all__.chain = chain;
 			__all__.myhexdump = myhexdump;
+			__all__.x = x;
+			__all__.y = y;
 		__pragma__ ('</all>')
 	}) ();
    return __all__;
