@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="generator"
+    content="HTML Tidy for HTML5 (experimental) for Windows https://github.com/w3c/tidy-html5/tree/c63cc39" />
+    <style type="text/css">
+div#divInput{float:left;}
+div#divOutput{float:right;}
+div#divButton{float:none;vertical-align:middle;margin:36px;}
+textarea#textareaInput{resize:none;overflow:auto;width:106px;height:126px;}
+textarea#textareaOutput{resize:none;overflow:auto;width:106px;height:126px;}
+</style>
+    <title>HEX transfer</title>
+  </head>
+  <body>
+    <div id="divBase">
+    <table border="0">
+      <tr>
+        <td>
+          <textarea rows="6" style=" width: 600px; height: 150px; background-color: #ffe28c; text-align: left;" id="textareaInput"
+          wrap="soft">42 0C 00 00
+80 00 00 00
+80 00 00 01
+00 00 00 01
+00 00 00 00
+F0 00 F0 01</textarea>
+        </td>
+        <td>
+          <div id="divButton">
+            <input type="button" value="¡¡£½¡·" onclick="ConvertToSingle()" />
+			<!--<input type="button" value="¡¡£½¡·" onclick="compute32(true)" />-->
+            <input type="button" value="¡¶£½¡¡" onclick="ConvertToHex()" />
+          </div>
+        </td>
+      </tr>
+    </table>
+    <table border="0">
+      <tr>
+        <th>little endian</th>
+        <th>Type</th>
+        <th>big endian</th>
+      </tr>
+      <tr>
+        <td>
+          <textarea rows="6" style=" width: 600px; height: 150px; background-color: #ffe28c; text-align: left;" id="textareaOutputfloat_l"
+          wrap="soft"></textarea>
+        </td>
+        <td>float</td>
+        <td>
+          <textarea rows="6" style=" width: 600px; height: 150px; background-color: #ffe28c; text-align: left;" id="textareaOutputfloat_b"
+          wrap="soft"></textarea>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <textarea rows="6" style=" width: 600px; height: 150px; background-color: #ffe28c; text-align: left;"id="textareaOutputuint_l" 
+		  wrap="soft"></textarea>
+        </td>
+        <td>uint</td>
+        <td>
+          <textarea rows="6" style=" width: 600px; height: 150px; background-color: #ffe28c; text-align: left;"id="textareaOutputuint_b"
+		  wrap="soft"></textarea>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <textarea rows="6" style=" width: 600px; height: 150px; background-color: #ffe28c; text-align: left;"id="textareaOutputInt_l"
+		  wrap="soft"></textarea>
+        </td>
+        <td>int</td>
+        <td>
+          <textarea rows="6" style=" width: 600px; height: 150px; background-color: #ffe28c; text-align: left;"id="textareaOutputInt_b"
+		  wrap="soft"></textarea>
+        </td>
+      </tr>
+    </table>
+    <script type="text/javascript" src="HexToAny.js"></script> 
+    <script type="text/javascript">
+function ConvertToSingle()
+{
+var
+t=document.getElementById("textareaInput").value;t=HexToSingleBatch(t);document.getElementById("textareaOutputfloat_l").value=t;
+t=document.getElementById("textareaInput").value;t=HexToSingleBatch_edian_t(t);document.getElementById("textareaOutputfloat_b").value=t;
+t=document.getElementById("textareaInput").value;t=HexToUIntBatch(t);document.getElementById("textareaOutputuint_l").value=t;
+t=document.getElementById("textareaInput").value;t=HexToUIntBatch_edian_t(t);document.getElementById("textareaOutputuint_b").value=t;
+t=document.getElementById("textareaInput").value;t=HexToIntBatch(t);document.getElementById("textareaOutputInt_l").value=t;
+t=document.getElementById("textareaInput").value;t=HexToIntBatch_edian_t(t);document.getElementById("textareaOutputInt_b").value=t;
+}
+function ConvertToHex()
+{var
+t=document.getElementById("textareaOutputfloat_l").value;t=SingleToHexBatch(t);document.getElementById("textareaInput").value=t;}
+</script></div>
+  </body>
+</html>
